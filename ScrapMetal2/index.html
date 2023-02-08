@@ -1,507 +1,885 @@
 <!DOCTYPE html>
+<!-- saved from url=(0041)https://scrap-metal-2.nugeshinia.repl.co/ -->
 <html>
 
 <head>
-    <title>Scrap Metal 2 - unblocked games at school</title>
-    <style>
-        body {
-            padding: 0;
-            margin: 0;
-            font-family: open sans, sans-serif;
-            overflow: hidden
-        }
-
-        #adWrapper {
-            width: 100%;
-            height: 100%
-        }
-
-        #adContainer {
-            width: 100%;
-            height: 100%
-        }
-
-        #videoContent {
-            overflow: hidden;
-            position: absolute;
-            width: 100%;
-            height: 100%
-        }
-
-        #game-container {
-            z-index: 0;
-            position: absolute;
-            left: 0;
-            right: 0;
-            top: 0;
-            bottom: 45px;
-            background-color: #5a7371;
-            box-shadow: 0 5px 5px #888
-        }
-
-        #game-container.fullscreen {
-            bottom: 0
-        }
-
-        .game-footer {
-            z-index: 0;
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 45px;
-            background: #5a7371;
-            background: linear-gradient(to bottom, #3f7996 0, #5a7371 100%)
-        }
-
-        .game-btn {
-            text-shadow: 1px 1px 3px #666;
-            font-weight: 400;
-            text-decoration: none;
-            display: block;
-            margin: 0 auto;
-            border-radius: 25px;
-            font-size: 25px;
-            color: #fff;
-            padding: 15px 25px;
-            background: #8dca00;
-            border: 5px solid #fff;
-            cursor: pointer
-        }
-
-        .game-btn:hover {
-            border: 7px solid #fff
-        }
-
-        .game-btn-link:hover {
-            text-decoration: none
-        }
-
-        .game-footer {
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            box-sizing: content-box
-        }
-
-        .game-footer .game-footer-logo {
-            height: 45px;
-            font-size: 24px;
-            line-height: 45px;
-            padding: 0 10px;
-            margin: 0
-        }
-
-        .game-footer .game-footer-logo a,
-        .game-footer .game-footer-logo a:active,
-        .game-footer .game-footer-logo a:hover {
-            text-decoration: none;
-            color: inherit
-        }
-
-        .game-footer .game-footer-fullscreen-btn img {
-            transition: all .2s ease-in-out
-        }
-
-        .game-footer .game-footer-fullscreen-btn:hover img {
-            transform: scale(1.15)
-        }
-
-        .game-footer .game-footer-btn {
-            color: #fff;
-            height: 45px;
-            overflow-y: hidden;
-            margin-left: 5px;
-            cursor: pointer;
-            font-weight: 700
-        }
-
-        .game-footer .game-footer-btn.game-footer-logo {
-            margin: 0
-        }
-
-        .game-footer .game-footer-btn:hover {
-            background-color: #719290
-        }
-
-        .game-footer .game-footer-btn a.game-footer-link {
-            line-height: 45px;
-            height: 45px;
-            display: inline-block
-        }
-
-        .game-footer .game-footer-btn a.game-footer-link:link,
-        .game-footer .game-footer-btn a.game-footer-link:visited {
-            color: inherit;
-            text-decoration: none
-        }
-
-        .game-footer .game-footer-more {
-            text-transform: uppercase;
-            padding: 0 10px;
-            font-size: 16px
-        }
-
-        .game-footer .game-footer-img-button {
-            width: 70px;
-            overflow-x: hidden;
-            height: 45px;
-            cursor: pointer
-        }
-
-        .game-footer .game-footer-img-button div {
-            height: 45px;
-            text-align: center
-        }
-
-        .game-footer .game-footer-img-button div a {
-            font-size: 0;
-            height: 45px;
-            width: 70px;
-            line-height: 62px
-        }
-
-        .gameloader {
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            overflow: hidden
-        }
-
-        .gameloader-game-name {
-            width: 340px;
-            font-size: 20px;
-            font-weight: 700;
-            text-transform: uppercase;
-            color: #fff;
-            margin-left: auto;
-            margin-right: auto;
-            text-align: center;
-            text-shadow: 1px 1px 1px #00476c
-        }
-
-        .gameloader .gameloader-logo {
-            margin-left: auto;
-            margin-right: auto;
-            margin: 8px 0 15px;
-            width: 300px
-        }
-
-        .gameloader .gameloader-logo img {
-            width: 100%;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .3)
-        }
-
-        .gameloader .gameloader-progressbar {
-            width: 300px;
-            height: 1.2vh;
-            border-radius: .6vh;
-            background-color: #fff;
-            flex-grow: 1;
-            transition: .2s ease-out all
-        }
-
-        @keyframes fillColor {
-            0% {
-                background-color: #3cf7dc
-            }
-
-            25% {
-                background-color: #ffa9be
-            }
-
-            50% {
-                background-color: #ffdc00
-            }
-
-            75% {
-                background-color: #e0aef5
-            }
-
-            100% {
-                background-color: #3cf7dc
-            }
-        }
-
-        .gameloader .gameloader-progressbar .gameloader-progressbar-progress {
-            width: 0;
-            height: 100%;
-            border-radius: .6vh;
-            background-color: #3cf7dc;
-            transition: .2s ease-out all;
-            animation-name: fillColor;
-            animation-duration: 3.5s;
-            animation-iteration-count: infinite;
-            animation-fill-mode: both
-        }
-
-        .gameloader .gameloader-progress-info {
-            margin-left: auto;
-            margin-right: auto;
-            margin-top: 6px;
-            font-size: 14px;
-            color: #fff;
-            text-align: center;
-            text-shadow: 1px 1px 1px #00476c
-        }
-
-        .loader-hidden {
-            display: none
-        }
-
-        .loader-active {
-            display: block
-        }
-
-        a {
-            text-decoration: none
-        }
-
-        a:hover {
-            text-decoration: none
-        }
-
-        .ball-beat,
-        .ball-beat>div {
-            position: relative;
-            -webkit-box-sizing: border-box;
-            -moz-box-sizing: border-box;
-            box-sizing: border-box
-        }
-
-        .ball-beat {
-            display: block;
-            font-size: 0;
-            color: #fff
-        }
-
-        .ball-beat>div {
-            display: inline-block;
-            float: none;
-            background-color: currentColor;
-            border: 0 solid currentColor
-        }
-
-        .ball-beat {
-            width: 108px;
-            height: 36px
-        }
-
-        .ball-beat>div {
-            width: 20px;
-            height: 20px;
-            margin: 8px;
-            border-radius: 100%;
-            -webkit-animation: ball-beat .7s -.15s infinite linear;
-            -moz-animation: ball-beat .7s -.15s infinite linear;
-            -o-animation: ball-beat .7s -.15s infinite linear;
-            animation: ball-beat .7s -.15s infinite linear
-        }
-
-        .ball-beat>div:nth-child(2n-1) {
-            -webkit-animation-delay: -.5s;
-            -moz-animation-delay: -.5s;
-            -o-animation-delay: -.5s;
-            animation-delay: -.5s
-        }
-
-        @-webkit-keyframes ball-beat {
-            50% {
-                opacity: .2;
-                -webkit-transform: scale(.75);
-                transform: scale(.75)
-            }
-
-            100% {
-                opacity: 1;
-                -webkit-transform: scale(1);
-                transform: scale(1)
-            }
-        }
-
-        @-moz-keyframes ball-beat {
-            50% {
-                opacity: .2;
-                -moz-transform: scale(.75);
-                transform: scale(.75)
-            }
-
-            100% {
-                opacity: 1;
-                -moz-transform: scale(1);
-                transform: scale(1)
-            }
-        }
-
-        @-o-keyframes ball-beat {
-            50% {
-                opacity: .2;
-                -o-transform: scale(.75);
-                transform: scale(.75)
-            }
-
-            100% {
-                opacity: 1;
-                -o-transform: scale(1);
-                transform: scale(1)
-            }
-        }
-
-        @keyframes ball-beat {
-            50% {
-                opacity: .2;
-                -webkit-transform: scale(.75);
-                -moz-transform: scale(.75);
-                -o-transform: scale(.75);
-                transform: scale(.75)
-            }
-
-            100% {
-                opacity: 1;
-                -webkit-transform: scale(1);
-                -moz-transform: scale(1);
-                -o-transform: scale(1);
-                transform: scale(1)
-            }
-        }
-
-        @keyframes rotate_pacman_half_up {
-            0% {
-                transform: rotate(270deg)
-            }
-
-            50% {
-                transform: rotate(360deg)
-            }
-
-            100% {
-                transform: rotate(270deg)
-            }
-        }
-
-        @keyframes rotate_pacman_half_down {
-            0% {
-                transform: rotate(90deg)
-            }
-
-            50% {
-                transform: rotate(0)
-            }
-
-            100% {
-                transform: rotate(90deg)
-            }
-        }
-
-        @keyframes pacman-balls {
-            75% {
-                opacity: .7
-            }
-
-            100% {
-                transform: translate(-100px, -6.25px)
-            }
-        }
-
-        .pacman {
-            position: relative
-        }
-
-        .pacman>div:nth-child(2) {
-            animation: pacman-balls 1s -.99s infinite linear
-        }
-
-        .pacman>div:nth-child(3) {
-            animation: pacman-balls 1s -.66s infinite linear
-        }
-
-        .pacman>div:nth-child(4) {
-            animation: pacman-balls 1s -.33s infinite linear
-        }
-
-        .pacman>div:nth-child(5) {
-            animation: pacman-balls 1s 0s infinite linear
-        }
-
-        .pacman>div:first-of-type {
-            width: 0;
-            height: 0;
-            border-right: 25px solid transparent;
-            border-top: 25px solid #fff;
-            border-left: 25px solid #fff;
-            border-bottom: 25px solid #fff;
-            border-radius: 25px;
-            animation: rotate_pacman_half_up .5s 0s infinite;
-            position: relative;
-            left: -30px
-        }
-
-        .pacman>div:nth-child(2) {
-            width: 0;
-            height: 0;
-            border-right: 25px solid transparent;
-            border-top: 25px solid #fff;
-            border-left: 25px solid #fff;
-            border-bottom: 25px solid #fff;
-            border-radius: 25px;
-            animation: rotate_pacman_half_down .5s 0s infinite;
-            margin-top: -50px;
-            position: relative;
-            left: -30px
-        }
-
-        .pacman>div:nth-child(3),
-        .pacman>div:nth-child(4),
-        .pacman>div:nth-child(5),
-        .pacman>div:nth-child(6) {
-            background-color: #fff;
-            width: 15px;
-            height: 15px;
-            border-radius: 100%;
-            margin: 2px;
-            width: 10px;
-            height: 10px;
-            position: absolute;
-            transform: translate(0, -6.25px);
-            top: 25px;
-            left: 70px
-        }
-
-        svg.icon.icon-lg {
-            height: 1.1em
-        }
-
-        svg.icon.icon-chevron-right.icon-lg.pull-right {
-            float: left;
-            top: 1.6em;
-            right: 1em;
-            fill: #fff;
-            padding-right: 10px
-        }
-    </style>
-
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <script src="https://scrap-metal-2.nugeshinia.repl.co/gameloader.js"></script>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Scrap Metal 2 - unblocked games at school</title>
+  <link rel="stylesheet" href="https://scrap-metal-2.nugeshinia.repl.co/gameloader.css">
+  <script src="https://scrap-metal-2.nugeshinia.repl.co/gameloader.js"></script>
+
+
+  <style type="text/css" data-jss="">
+    .jss125 {
+      text-shadow: 2px 2px 2px #00476c;
+      font-weight: bold;
+    }
+
+    .jss126 {
+      color: white;
+    }
+
+    .jss127 {
+      color: #d7ebf6;
+      font-size: 18px;
+      font-weight: normal;
+    }
+  </style>
+  <style type="text/css" data-jss="">
+    .jss128 {
+      text-shadow: 2px 2px 2px #00476c;
+      font-weight: bold;
+    }
+
+    .jss129 {
+      color: white;
+    }
+
+    .jss130 {
+      color: #d7ebf6;
+      font-size: 18px;
+      font-weight: normal;
+    }
+  </style>
+  <style type="text/css" data-jss="">
+    .jss122 {
+      text-shadow: 2px 2px 2px #00476c;
+      font-weight: bold;
+    }
+
+    .jss123 {
+      color: white;
+    }
+
+    .jss124 {
+      color: #d7ebf6;
+      font-size: 18px;
+      font-weight: normal;
+    }
+  </style>
+  <style type="text/css" data-jss="">
+    .jss119 {
+      color: #bcdd55;
+    }
+
+    .jss120 {
+      color: white;
+    }
+
+    .jss121 {
+      color: #20defd;
+    }
+  </style>
+  <style type="text/css" data-jss="" data-meta="MuiGrid">
+    .jss4 {
+      width: 100%;
+      display: flex;
+      z-index: 1;
+      flex-wrap: wrap;
+      box-sizing: border-box;
+    }
+
+    .jss5 {
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    .jss6 {
+      min-width: 0;
+    }
+
+    .jss7 {
+      flex-direction: column;
+    }
+
+    .jss8 {
+      flex-direction: column-reverse;
+    }
+
+    .jss9 {
+      flex-direction: row-reverse;
+    }
+
+    .jss10 {
+      flex-wrap: nowrap;
+    }
+
+    .jss11 {
+      flex-wrap: wrap-reverse;
+    }
+
+    .jss12 {
+      align-items: center;
+    }
+
+    .jss13 {
+      align-items: flex-start;
+    }
+
+    .jss14 {
+      align-items: flex-end;
+    }
+
+    .jss15 {
+      align-items: baseline;
+    }
+
+    .jss16 {
+      align-content: center;
+    }
+
+    .jss17 {
+      align-content: flex-start;
+    }
+
+    .jss18 {
+      align-content: flex-end;
+    }
+
+    .jss19 {
+      align-content: space-between;
+    }
+
+    .jss20 {
+      align-content: space-around;
+    }
+
+    .jss21 {
+      justify-content: center;
+    }
+
+    .jss22 {
+      justify-content: flex-end;
+    }
+
+    .jss23 {
+      justify-content: space-between;
+    }
+
+    .jss24 {
+      justify-content: space-around;
+    }
+
+    .jss25 {
+      width: calc(100% + 8px);
+      margin: -4px;
+    }
+
+    .jss25>.jss5 {
+      padding: 4px;
+    }
+
+    .jss26 {
+      width: calc(100% + 16px);
+      margin: -8px;
+    }
+
+    .jss26>.jss5 {
+      padding: 8px;
+    }
+
+    .jss27 {
+      width: calc(100% + 24px);
+      margin: -12px;
+    }
+
+    .jss27>.jss5 {
+      padding: 12px;
+    }
+
+    .jss28 {
+      width: calc(100% + 32px);
+      margin: -16px;
+    }
+
+    .jss28>.jss5 {
+      padding: 16px;
+    }
+
+    .jss29 {
+      width: calc(100% + 40px);
+      margin: -20px;
+    }
+
+    .jss29>.jss5 {
+      padding: 20px;
+    }
+
+    .jss30 {
+      flex-grow: 1;
+      max-width: 100%;
+      flex-basis: 0;
+    }
+
+    .jss31 {
+      max-width: 8.33333%;
+      flex-basis: 8.33333%;
+    }
+
+    .jss32 {
+      max-width: 16.66667%;
+      flex-basis: 16.66667%;
+    }
+
+    .jss33 {
+      max-width: 25%;
+      flex-basis: 25%;
+    }
+
+    .jss34 {
+      max-width: 33.33333%;
+      flex-basis: 33.33333%;
+    }
+
+    .jss35 {
+      max-width: 41.66667%;
+      flex-basis: 41.66667%;
+    }
+
+    .jss36 {
+      max-width: 50%;
+      flex-basis: 50%;
+    }
+
+    .jss37 {
+      max-width: 58.33333%;
+      flex-basis: 58.33333%;
+    }
+
+    .jss38 {
+      max-width: 66.66667%;
+      flex-basis: 66.66667%;
+    }
+
+    .jss39 {
+      max-width: 75%;
+      flex-basis: 75%;
+    }
+
+    .jss40 {
+      max-width: 83.33333%;
+      flex-basis: 83.33333%;
+    }
+
+    .jss41 {
+      max-width: 91.66667%;
+      flex-basis: 91.66667%;
+    }
+
+    .jss42 {
+      max-width: 100%;
+      flex-basis: 100%;
+    }
+
+    @media (min-width:600px) {
+      .jss43 {
+        flex-grow: 1;
+        max-width: 100%;
+        flex-basis: 0;
+      }
+
+      .jss44 {
+        max-width: 8.33333%;
+        flex-basis: 8.33333%;
+      }
+
+      .jss45 {
+        max-width: 16.66667%;
+        flex-basis: 16.66667%;
+      }
+
+      .jss46 {
+        max-width: 25%;
+        flex-basis: 25%;
+      }
+
+      .jss47 {
+        max-width: 33.33333%;
+        flex-basis: 33.33333%;
+      }
+
+      .jss48 {
+        max-width: 41.66667%;
+        flex-basis: 41.66667%;
+      }
+
+      .jss49 {
+        max-width: 50%;
+        flex-basis: 50%;
+      }
+
+      .jss50 {
+        max-width: 58.33333%;
+        flex-basis: 58.33333%;
+      }
+
+      .jss51 {
+        max-width: 66.66667%;
+        flex-basis: 66.66667%;
+      }
+
+      .jss52 {
+        max-width: 75%;
+        flex-basis: 75%;
+      }
+
+      .jss53 {
+        max-width: 83.33333%;
+        flex-basis: 83.33333%;
+      }
+
+      .jss54 {
+        max-width: 91.66667%;
+        flex-basis: 91.66667%;
+      }
+
+      .jss55 {
+        max-width: 100%;
+        flex-basis: 100%;
+      }
+    }
+
+    @media (min-width:960px) {
+      .jss56 {
+        flex-grow: 1;
+        max-width: 100%;
+        flex-basis: 0;
+      }
+
+      .jss57 {
+        max-width: 8.33333%;
+        flex-basis: 8.33333%;
+      }
+
+      .jss58 {
+        max-width: 16.66667%;
+        flex-basis: 16.66667%;
+      }
+
+      .jss59 {
+        max-width: 25%;
+        flex-basis: 25%;
+      }
+
+      .jss60 {
+        max-width: 33.33333%;
+        flex-basis: 33.33333%;
+      }
+
+      .jss61 {
+        max-width: 41.66667%;
+        flex-basis: 41.66667%;
+      }
+
+      .jss62 {
+        max-width: 50%;
+        flex-basis: 50%;
+      }
+
+      .jss63 {
+        max-width: 58.33333%;
+        flex-basis: 58.33333%;
+      }
+
+      .jss64 {
+        max-width: 66.66667%;
+        flex-basis: 66.66667%;
+      }
+
+      .jss65 {
+        max-width: 75%;
+        flex-basis: 75%;
+      }
+
+      .jss66 {
+        max-width: 83.33333%;
+        flex-basis: 83.33333%;
+      }
+
+      .jss67 {
+        max-width: 91.66667%;
+        flex-basis: 91.66667%;
+      }
+
+      .jss68 {
+        max-width: 100%;
+        flex-basis: 100%;
+      }
+    }
+
+    @media (min-width:1280px) {
+      .jss69 {
+        flex-grow: 1;
+        max-width: 100%;
+        flex-basis: 0;
+      }
+
+      .jss70 {
+        max-width: 8.33333%;
+        flex-basis: 8.33333%;
+      }
+
+      .jss71 {
+        max-width: 16.66667%;
+        flex-basis: 16.66667%;
+      }
+
+      .jss72 {
+        max-width: 25%;
+        flex-basis: 25%;
+      }
+
+      .jss73 {
+        max-width: 33.33333%;
+        flex-basis: 33.33333%;
+      }
+
+      .jss74 {
+        max-width: 41.66667%;
+        flex-basis: 41.66667%;
+      }
+
+      .jss75 {
+        max-width: 50%;
+        flex-basis: 50%;
+      }
+
+      .jss76 {
+        max-width: 58.33333%;
+        flex-basis: 58.33333%;
+      }
+
+      .jss77 {
+        max-width: 66.66667%;
+        flex-basis: 66.66667%;
+      }
+
+      .jss78 {
+        max-width: 75%;
+        flex-basis: 75%;
+      }
+
+      .jss79 {
+        max-width: 83.33333%;
+        flex-basis: 83.33333%;
+      }
+
+      .jss80 {
+        max-width: 91.66667%;
+        flex-basis: 91.66667%;
+      }
+
+      .jss81 {
+        max-width: 100%;
+        flex-basis: 100%;
+      }
+    }
+
+    @media (min-width:1920px) {
+      .jss82 {
+        flex-grow: 1;
+        max-width: 100%;
+        flex-basis: 0;
+      }
+
+      .jss83 {
+        max-width: 8.33333%;
+        flex-basis: 8.33333%;
+      }
+
+      .jss84 {
+        max-width: 16.66667%;
+        flex-basis: 16.66667%;
+      }
+
+      .jss85 {
+        max-width: 25%;
+        flex-basis: 25%;
+      }
+
+      .jss86 {
+        max-width: 33.33333%;
+        flex-basis: 33.33333%;
+      }
+
+      .jss87 {
+        max-width: 41.66667%;
+        flex-basis: 41.66667%;
+      }
+
+      .jss88 {
+        max-width: 50%;
+        flex-basis: 50%;
+      }
+
+      .jss89 {
+        max-width: 58.33333%;
+        flex-basis: 58.33333%;
+      }
+
+      .jss90 {
+        max-width: 66.66667%;
+        flex-basis: 66.66667%;
+      }
+
+      .jss91 {
+        max-width: 75%;
+        flex-basis: 75%;
+      }
+
+      .jss92 {
+        max-width: 83.33333%;
+        flex-basis: 83.33333%;
+      }
+
+      .jss93 {
+        max-width: 91.66667%;
+        flex-basis: 91.66667%;
+      }
+
+      .jss94 {
+        max-width: 100%;
+        flex-basis: 100%;
+      }
+    }
+  </style>
+  <style type="text/css" data-jss="" data-meta="MuiTooltip">
+    .jss135 {
+      z-index: 1500;
+      pointer-events: none;
+    }
+
+    .jss135.jss136 {
+      pointer-events: auto;
+    }
+
+    .jss137 {
+      color: #fff;
+      opacity: 0;
+      padding: 4px 8px;
+      transform: scale(0);
+      font-size: 0.625rem;
+      transition: opacity 150ms cubic-bezier(0.4, 0, 1, 1) 0ms, transform 150ms cubic-bezier(0.4, 0, 1, 1) 0ms;
+      min-height: 0;
+      font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+      line-height: 1.4em;
+      border-radius: 2px;
+      background-color: #445655;
+    }
+
+    .jss137.jss136 {
+      opacity: 0.9;
+      transform: scale(1);
+      transition: opacity 150ms cubic-bezier(0.0, 0, 0.2, 1) 0ms, transform 150ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;
+    }
+
+    .jss138 {
+      padding: 8px 16px;
+      font-size: 0.875rem;
+      line-height: 1.14286em;
+    }
+
+    .jss139 {
+      margin: 0 24px;
+      transform-origin: right center;
+    }
+
+    @media (min-width:600px) {
+      .jss139 {
+        margin: 0 14px;
+      }
+    }
+
+    .jss140 {
+      margin: 0 24px;
+      transform-origin: left center;
+    }
+
+    @media (min-width:600px) {
+      .jss140 {
+        margin: 0 14px;
+      }
+    }
+
+    .jss141 {
+      margin: 24px 0;
+      transform-origin: center bottom;
+    }
+
+    @media (min-width:600px) {
+      .jss141 {
+        margin: 14px 0;
+      }
+    }
+
+    .jss142 {
+      margin: 24px 0;
+      transform-origin: center top;
+    }
+
+    @media (min-width:600px) {
+      .jss142 {
+        margin: 14px 0;
+      }
+    }
+  </style>
+  <style type="text/css" data-jss="">
+    .jss134 {
+      font-size: 12px;
+    }
+  </style>
+  <style type="text/css" data-jss="" data-meta="MuiTypography">
+    .jss95 {
+      margin: 0;
+      display: block;
+    }
+
+    .jss96 {
+      color: rgba(0, 0, 0, 0.54);
+      font-size: 7rem;
+      font-weight: 300;
+      font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+      line-height: 1.14286em;
+      margin-left: -.04em;
+      letter-spacing: -.04em;
+    }
+
+    .jss97 {
+      color: rgba(0, 0, 0, 0.54);
+      font-size: 3.5rem;
+      font-weight: 400;
+      font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+      line-height: 1.30357em;
+      margin-left: -.02em;
+      letter-spacing: -.02em;
+    }
+
+    .jss98 {
+      color: rgba(0, 0, 0, 0.54);
+      font-size: 2.8125rem;
+      font-weight: 400;
+      font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+      line-height: 1.06667em;
+      margin-left: -.02em;
+    }
+
+    .jss99 {
+      color: rgba(0, 0, 0, 0.54);
+      font-size: 2.125rem;
+      font-weight: 400;
+      font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+      line-height: 1.20588em;
+    }
+
+    .jss100 {
+      color: rgba(0, 0, 0, 0.87);
+      font-size: 1.5rem;
+      font-weight: 400;
+      font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+      line-height: 1.35417em;
+    }
+
+    .jss101 {
+      color: rgba(0, 0, 0, 0.87);
+      font-size: 1.3125rem;
+      font-weight: 500;
+      font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+      line-height: 1.16667em;
+    }
+
+    .jss102 {
+      color: rgba(0, 0, 0, 0.87);
+      font-size: 1rem;
+      font-weight: 400;
+      font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+      line-height: 1.5em;
+    }
+
+    .jss103 {
+      color: rgba(0, 0, 0, 0.87);
+      font-size: 0.875rem;
+      font-weight: 500;
+      font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+      line-height: 1.71429em;
+    }
+
+    .jss104 {
+      color: rgba(0, 0, 0, 0.87);
+      font-size: 0.875rem;
+      font-weight: 400;
+      font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+      line-height: 1.46429em;
+    }
+
+    .jss105 {
+      color: rgba(0, 0, 0, 0.54);
+      font-size: 0.75rem;
+      font-weight: 400;
+      font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+      line-height: 1.375em;
+    }
+
+    .jss106 {
+      color: rgba(0, 0, 0, 0.87);
+      font-size: 0.875rem;
+      font-weight: 500;
+      font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+      text-transform: uppercase;
+    }
+
+    .jss107 {
+      text-align: left;
+    }
+
+    .jss108 {
+      text-align: center;
+    }
+
+    .jss109 {
+      text-align: right;
+    }
+
+    .jss110 {
+      text-align: justify;
+    }
+
+    .jss111 {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    .jss112 {
+      margin-bottom: 0.35em;
+    }
+
+    .jss113 {
+      margin-bottom: 16px;
+    }
+
+    .jss114 {
+      color: inherit;
+    }
+
+    .jss115 {
+      color: #3f51b5;
+    }
+
+    .jss116 {
+      color: #f50057;
+    }
+
+    .jss117 {
+      color: rgba(0, 0, 0, 0.54);
+    }
+
+    .jss118 {
+      color: #f44336;
+    }
+  </style>
+  <style type="text/css" data-jss="">
+    .jss131 {
+      padding: 10px;
+      font-size: 16px;
+      min-height: 20px;
+      font-weight: bold;
+      text-shadow: 1px 1px 1px #00476c;
+      text-transform: uppercase;
+    }
+
+    .jss132 {
+      color: #fff;
+    }
+
+    .jss133 {
+      color: #bcdd55;
+      text-shadow: 1px 1px 1px #00476c;
+    }
+  </style>
+  <style type="text/css" data-jss="">
+    .jss1 {
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 1;
+      position: absolute;
+      overflow: hidden;
+      background-size: cover;
+      background-color: #383838;
+      background-position: center;
+    }
+
+    .jss1:before {
+      top: 0;
+      width: 100%;
+      filter: blur(16px);
+      height: 100%;
+      content: "";
+      display: block;
+      opacity: 0.5;
+      z-index: 0;
+      position: absolute;
+      background-size: cover;
+      background-image: url(logo.jpg);
+    }
+
+    .jss2 {
+      top: 0;
+      right: 4px;
+      z-index: 2;
+      position: absolute;
+      line-height: 0;
+    }
+
+    .jss3 {
+      font-size: 45px;
+      padding-top: 7px;
+    }
+  </style>
+  <style type="text/css" data-jss="" data-meta="MuiCssBaseline">
+    html {
+      box-sizing: border-box;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: inherit;
+    }
+
+    body {
+      margin: 0;
+      background-color: #fafafa;
+    }
+
+    @media print {
+      body {
+        background-color: #fff;
+      }
+    }
+  </style>
 </head>
 
 <body>
-    <script type="text/javascript">
-        var options = {
-            author: "Vseigru",
-            logo: "https://scrap-metal-2.nugeshinia.repl.co/logo.jpg",
+  <script type="text/javascript">
+    var options = {
+      author: "Vseigru",
+      logo: "logo.jpg",
 
-            gameNameEu: "Scrap Metal 2: Boys Game",
-            gameUrl: "23898",
-            moreLink: ("https://sites.google.com/view/unblockedgame"),
-            allowFullscreen: true,
-            locale: "ru_RU",
-            loader: "5.6.x",
-            loaderOptions: {
-                "moduleJsonUrl": "https://scrap-metal-2.nugeshinia.repl.co/ScrapMetal2.json",
-                "unityLoaderUrl": "https://gist.github.com/vladimir-kotikov/bdd36048ae69e396178e4cb7cd201bcb.js"
-            },
-        };
-        GameInit.load(options);
-    </script>
+      gameNameEu: "Scrap Metal 2: Boys Game",
+      gameUrl: "23898",
+      moreLink: ("https://sites.google.com/view/unblockedgame"),
+      allowFullscreen: true,
+      locale: "ru_RU",
+      loader: "5.6.x",
+      loaderOptions: { "moduleJsonUrl": "https://raw.githubusercontent.com/notchyves/gamebottemp/main/ScrapMetal2/scrap.json", "unityLoaderUrl": "https://scrap-metal-2.nugeshinia.repl.co/UnityLoader.js" },
+    };
+    GameInit.load(options);
+  </script>
+  <div style="height: 657px; width: 1366px;">
     <div class="game">
       <div id="game-container" style="padding: 0px; margin: 0px; border: 0px; background: rgb(35, 31, 32);"><canvas
           id="#canvas" style="width: 100%; height: 100%;"></canvas></div>
@@ -542,7 +920,90 @@
           </div>
         </div>
       </div>
-     <script src="https://gist.github.com/vladimir-kotikov/bdd36048ae69e396178e4cb7cd201bcb.js"></script>
-</body>
+      <div class="game-footer">
+        <div class="jss4 jss12 jss24">
+          <div class="jss5" style="flex: 1 1 0%;">
+            <div class="jss4 jss12">
+              <div class="jss5">
+                <div
+                  style="place-content: center; align-items: center; box-sizing: border-box; display: flex; flex-flow: row nowrap;">
+                  <div class="game-footer-logo game-footer-btn"><a
+                      href="https://vseigru.net/?utm_source=https%3A%2F%2Fscrap-metal-2.nugeshinia.repl.co%2F&amp;utm_medium=game_frame&amp;utm_campaign=undefined&amp;utm_content=logo"
+                      target="_blank">
+                      <div class="jss122"><span><span class="jss119">V</span><span class="jss120">SE</span><span
+                            class="jss121">I</span><span class="jss120">GRU</span></span><span
+                          class="jss125 jss126"></span><span class="jss128 jss130" style="display: inline;">.NET</span>
+                      </div>
+                    </a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="jss5">
+            <div class="jss4 jss24">
+              <div class="jss5">
+                <div class="game-footer-btn game-footer-more">
+                  <div
+                    style="place-content: center; align-items: center; box-sizing: border-box; display: flex; flex-flow: row nowrap; height: 100%;">
+                    <a href="https://vseigru.net/?utm_source=https%3A%2F%2Fscrap-metal-2.nugeshinia.repl.co%2F&amp;utm_medium=game_frame&amp;utm_campaign=undefined&amp;utm_content=more_link"
+                      class="game-footer-link" target="_blank">More Games »</a></div>
+                </div>
+              </div>
+              <div class="jss5">
+                <div class="game-footer-btn game-footer-img-button game-footer-fullscreen-btn"><span>
+                    <div
+                      style="place-content: center; align-items: center; box-sizing: border-box; display: flex; flex-flow: row nowrap;">
+                      <img src="./Scrap Metal 2 - unblocked games at school_files/fullscreen_btn.png"></div>
+                  </span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="floating" id="moreg" style="position:fixed; top: 30%; left: 0px; z-index: 10"><a target="_blank"
+      href="https://sites.google.com/view/unblockedgame" title="unblocked games at school"><img
+        src="./Scrap Metal 2 - unblocked games at school_files/MoreGames.png" width="180" height="90"
+        style="cursor:pointer;" alt="More Games"></a></div>
+  <div class="jss135" data-placement="top"
+    style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(1290px, 502px, 0px);">
+    <div role="tooltip" aria-hidden="true" class="jss137 jss134 jss141">Fullscreen</div>
+  </div>
+  <script src="https://scrap-metal-2.nugeshinia.repl.co/UnityLoader.js" async=""></script>
+  <div id="dji-sru-busy-state"></div><dji-sru-distraction></dji-sru-distraction>
+  <div dji-sru-rewordify-popup="true">
+    <div class="dji-sru-close-btn"></div>
+    <div dji-sru-rewordify-body="true" tabindex="0">
+      <div dji-non-draggable="true"></div>
+    </div>
+    <div class="dji-geom-ctrl-resize-top"></div>
+    <div class="dji-geom-ctrl-resize-bottom"></div>
+    <div class="dji-geom-ctrl-resize-left"></div>
+    <div class="dji-geom-ctrl-resize-right"></div>
+    <div class="dji-geom-ctrl-resize-top-left"></div>
+    <div class="dji-geom-ctrl-resize-top-right"></div>
+    <div class="dji-geom-ctrl-resize-bottom-right"></div>
+    <div class="dji-geom-ctrl-resize-bottom-left"></div>
+    <div class="geomCtrlContainerOverlay"></div>
+  </div>
+  <div dji-sru-rewordify-popup="true">
+    <div class="dji-sru-close-btn"></div>
+    <div dji-sru-rewordify-body="true" tabindex="0">
+      <div dji-non-draggable="true"></div>
+    </div>
+    <div class="dji-geom-ctrl-resize-top"></div>
+    <div class="dji-geom-ctrl-resize-bottom"></div>
+    <div class="dji-geom-ctrl-resize-left"></div>
+    <div class="dji-geom-ctrl-resize-right"></div>
+    <div class="dji-geom-ctrl-resize-top-left"></div>
+    <div class="dji-geom-ctrl-resize-top-right"></div>
+    <div class="dji-geom-ctrl-resize-bottom-right"></div>
+    <div class="dji-geom-ctrl-resize-bottom-left"></div>
+    <div class="geomCtrlContainerOverlay"></div>
+  </div>
+</body><dji-sru id="__dji_sru_components"></dji-sru><dji-sru id="__dji_sru_main_container"></dji-sru>
 
 </html>
